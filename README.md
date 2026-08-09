@@ -29,7 +29,7 @@ npm run preview    # preview the production build locally
 |---|---|---|
 | **Your photo** | `public/pic.jpeg` | Shown in the Hero section. Until it's there, a styled "AWAITING UPLINK" placeholder shows automatically — nothing looks broken. |
 | **Your résumé** | `public/resume.pdf` | **Already included** — the PDF you uploaded has been copied straight into `public/resume.pdf`, so the "Download Resume" button and the terminal's `resume` command work right now, out of the box. Replace this file any time you update your résumé. |
-| **EmailJS keys** | `src/data/content.ts` → `SITE.emailjs` | Powers the Contact form. Free tier at emailjs.com. Until you add real keys, submitting the form shows a "your message is ready" panel with an **Open in Email App** button and a **Copy Message** button — so it always gives the visitor a real, working way to reach you, even with no backend configured. |
+| **Web3Forms key** | `src/data/content.ts` → `SITE.web3formsKey` | Powers the Contact form so it actually delivers to your inbox. Go to **web3forms.com**, enter your email, and they instantly email you a free access key — no account, no password, no dashboard. Paste it in and the form POSTs directly from the browser, no backend needed. Until you add a real key, submitting the form still shows a popup confirmation and a "your message is ready" panel with an **Open in Email App** button and a **Copy Message** button — so it always gives the visitor a real, working way to reach you. |
 | **Nova AI live URL** | `src/data/content.ts` → `SITE.novaUrl` | Already set to `nova-ai-bice-five.vercel.app`. Update this if that URL ever changes — both the Projects card and the Nova guide bot's "Try the full Nova AI" link read from this one value. |
 
 Everything else (name, bio, projects, skills, experience, education, testimonials, links)
@@ -159,4 +159,5 @@ Either way, no server is required — it's a fully static build.
 ## 8. Tech stack
 
 React 19, Vite 8, TypeScript, Tailwind CSS v4, Framer Motion, GSAP + ScrollTrigger,
-Three.js / @react-three/fiber, Lenis, @emailjs/browser, react-icons, canvas-confetti.
+Three.js / @react-three/fiber, Lenis, react-icons, canvas-confetti. Contact form
+delivery via a plain `fetch` to Web3Forms — no extra dependency needed.

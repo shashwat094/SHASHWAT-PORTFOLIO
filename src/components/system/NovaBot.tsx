@@ -19,7 +19,7 @@ const SECTION_INTROS: Record<string, string> = {
   about: "You're on the About section — his background, what he's actually shipped, and how he works.",
   terminal: "This is the interactive terminal — a real, working command shell. Try typing help in it, or tap a command chip.",
   skills: "You're looking at Skills — grouped by how he actually uses them, not just a logo wall.",
-  projects: "You're on Projects — real, shipped systems, including Nova AI, the assistant this chat is a small preview of.",
+  projects: "You're on Projects — real, shipped systems, including Nova, the assistant this chat is a small preview of.",
   experience: "This is Experience — his work history, most recently as a Data Entry Operator and as founder of ChitrakootDhamTour.",
   education: "You're on Education — his BCA at SICS, affiliated with Makhanlal Chaturvedi National University.",
   services: "This is what he offers if you're hiring or contracting — full-stack web, mobile, dashboards, and business sites.",
@@ -91,7 +91,7 @@ function respond(topic: string): ReactNode {
       return (
         <div className="space-y-2">
           <p>
-            Nova AI is Shashwat's personal AI agent — {nova?.description}
+            Nova is Shashwat's production AI assistant — {nova?.description}
           </p>
           <a
             href={SITE.novaUrl}
@@ -99,7 +99,7 @@ function respond(topic: string): ReactNode {
             rel="noreferrer"
             className="inline-flex items-center gap-1.5 text-signal hover:underline text-xs font-medium"
           >
-            Try the full Nova AI <FiExternalLink size={11} />
+            Try the full Nova <FiExternalLink size={11} />
           </a>
           <p className="text-ink-faint text-xs">
             (I'm just a small, scripted preview of the idea — built to work without a backend on this static site.)

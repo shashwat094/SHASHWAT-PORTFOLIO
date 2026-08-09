@@ -75,6 +75,14 @@ html {
   scroll-behavior: auto; /* Lenis handles smoothing */
 }
 
+/* Every section is a scroll target (nav links, terminal, command palette).
+   Without this, scrollIntoView aligns a section's top edge with the very
+   top of the viewport — which the fixed navbar then sits on top of,
+   visually colliding with the section's own heading. */
+section[id] {
+  scroll-margin-top: 6.5rem;
+}
+
 body {
   background: var(--color-void);
   color: var(--color-ink);

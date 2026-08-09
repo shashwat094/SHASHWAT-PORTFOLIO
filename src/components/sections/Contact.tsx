@@ -1,17 +1,17 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import emailjs from '@emailjs/browser'
-import { FiMail, FiPhone, FiMapPin, FiSend, FiGithub, FiLinkedin, FiCopy, FiCheck, FiExternalLink } from 'react-icons/fi'
+import { useEffect, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import {
+  FiMail, FiPhone, FiMapPin, FiSend, FiGithub, FiLinkedin,
+  FiCopy, FiCheck, FiExternalLink, FiCheckCircle, FiAlertCircle, FiX,
+} from 'react-icons/fi'
 import { SITE } from '@/data/content'
 import SectionHeading from '@/components/ui/SectionHeading'
 import MagneticButton from '@/components/ui/MagneticButton'
 
-type Status = 'idle' | 'sending' | 'ready' | 'sent' | 'error'
+type Status = 'idle' | 'sending' | 'ready' | 'error'
+type Toast = { kind: 'success' | 'error'; text: string } | null
 
-const EMAILJS_CONFIGURED =
-  SITE.emailjs.serviceId !== 'YOUR_EMAILJS_SERVICE_ID' &&
-  SITE.emailjs.templateId !== 'YOUR_EMAILJS_TEMPLATE_ID' &&
-  SITE.emailjs.publicKey !== 'YOUR_EMAILJS_PUBLIC_KEY'
+const WEB3FORMS_CONFIGURED = SITE.web3formsKey !== 'YOUR_WEB3FORMS_ACCESS_KEY'
 
 function buildMailto(name: string, email: string, message: string) {
   const subject = `Portfolio contact from ${name}`
@@ -24,6 +24,13 @@ export default function Contact() {
   const [errors, setErrors] = useState<Partial<typeof form>>({})
   const [status, setStatus] = useState<Status>('idle')
   const [copied, setCopied] = useState<'message' | 'email' | null>(null)
+  const [toast, setToast] = useState<Toast>(null)
+
+  useEffect(() => {
+    if (!toast) return
+    const t = setTimeout(() => setToast(null), 4500)
+    return () => clearTimeout(t)
+  }, [toast])
 
   const validate = () => {
     const next: Partial<typeof form> = {}
@@ -38,26 +45,39 @@ export default function Contact() {
     e.preventDefault()
     if (!validate()) return
 
-    if (!EMAILJS_CONFIGURED) {
-      // No backend configured yet — hand the visitor a guaranteed way to
-      // actually reach out instead of silently trying (and possibly failing)
-      // to open a mail client with no visible feedback either way.
+    if (!WEB3FORMS_CONFIGURED) {
+      // No delivery key configured yet — still give a real, guaranteed way
+      // to reach out instead of silently failing.
       setStatus('ready')
+      setToast({ kind: 'success', text: 'Message ready — pick how to send it below.' })
       return
     }
 
     setStatus('sending')
     try {
-      await emailjs.send(
-        SITE.emailjs.serviceId,
-        SITE.emailjs.templateId,
-        { from_name: form.name, from_email: form.email, message: form.message },
-        SITE.emailjs.publicKey
-      )
-      setStatus('sent')
-      setForm({ name: '', email: '', message: '' })
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: SITE.web3formsKey,
+          subject: `Portfolio contact from ${form.name}`,
+          from_name: form.name,
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setToast({ kind: 'success', text: "Message sent! I'll get back to you soon." })
+        setForm({ name: '', email: '', message: '' })
+        setStatus('idle')
+      } else {
+        throw new Error(data.message || 'Delivery failed')
+      }
     } catch {
       setStatus('error')
+      setToast({ kind: 'error', text: "Couldn't send that — try the direct email option below." })
     }
   }
 
@@ -73,12 +93,41 @@ export default function Contact() {
 
   return (
     <section id="contact" className="relative py-20 sm:py-32 px-4 xs:px-5 sm:px-8">
+      {/* Popup confirmation toast */}
+      <AnimatePresence>
+        {toast && (
+          <motion.div
+            initial={{ opacity: 0, y: -16, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -12, scale: 0.96 }}
+            transition={{ duration: 0.25 }}
+            className="fixed top-20 sm:top-24 left-1/2 -translate-x-1/2 z-[600] w-[calc(100vw-2rem)] max-w-sm"
+          >
+            <div
+              className={`panel-glass clip-corner flex items-start gap-3 px-4 py-3 shadow-glow-md ${
+                toast.kind === 'success' ? 'border-signal/50' : 'border-alert/50'
+              }`}
+            >
+              {toast.kind === 'success' ? (
+                <FiCheckCircle className="text-signal shrink-0 mt-0.5" size={18} />
+              ) : (
+                <FiAlertCircle className="text-alert shrink-0 mt-0.5" size={18} />
+              )}
+              <p className="text-sm text-ink flex-1">{toast.text}</p>
+              <button onClick={() => setToast(null)} className="text-ink-faint hover:text-ink transition-colors shrink-0">
+                <FiX size={16} />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="mx-auto max-w-5xl">
         <SectionHeading
           index="11"
           eyebrow="Let's Talk"
           title="Contact"
-          description="Open to internships and freelance work — reach out through the form or directly."
+          description="Open to internships and full-time roles — reach out through the form or directly."
         />
 
         <div className="grid md:grid-cols-[0.9fr_1.1fr] gap-10">
@@ -128,8 +177,7 @@ export default function Contact() {
                 <div>
                   <p className="font-display text-lg font-semibold text-ink mb-1">Your message is ready</p>
                   <p className="text-xs text-ink-dim leading-relaxed">
-                    This site doesn't run its own mail server, so pick whichever of these actually works on
-                    your device — both send the exact same message.
+                    Pick whichever of these actually works on your device — both send the exact same message.
                   </p>
                 </div>
 
@@ -178,7 +226,7 @@ export default function Contact() {
                   <input
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full bg-void-soft border border-hairline focus:border-signal outline-none px-3 py-2.5 text-sm text-ink transition-colors"
+                    className="w-full bg-void-soft border border-hairline focus:border-signal outline-none px-3 py-2.5 text-sm text-ink transition-colors rounded-lg"
                     placeholder="Your name"
                   />
                   {errors.name && <p className="text-alert text-xs mt-1">{errors.name}</p>}
@@ -188,7 +236,7 @@ export default function Contact() {
                   <input
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full bg-void-soft border border-hairline focus:border-signal outline-none px-3 py-2.5 text-sm text-ink transition-colors"
+                    className="w-full bg-void-soft border border-hairline focus:border-signal outline-none px-3 py-2.5 text-sm text-ink transition-colors rounded-lg"
                     placeholder="you@example.com"
                   />
                   {errors.email && <p className="text-alert text-xs mt-1">{errors.email}</p>}
@@ -199,7 +247,7 @@ export default function Contact() {
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
                     rows={4}
-                    className="w-full bg-void-soft border border-hairline focus:border-signal outline-none px-3 py-2.5 text-sm text-ink transition-colors resize-none"
+                    className="w-full bg-void-soft border border-hairline focus:border-signal outline-none px-3 py-2.5 text-sm text-ink transition-colors resize-none rounded-lg"
                     placeholder="What are you looking to build?"
                   />
                   {errors.message && <p className="text-alert text-xs mt-1">{errors.message}</p>}
@@ -214,9 +262,6 @@ export default function Contact() {
                   {status === 'sending' ? 'Sending...' : 'Send Message'}
                 </MagneticButton>
 
-                {status === 'sent' && (
-                  <p className="text-signal text-xs text-center">Message sent — I'll get back to you soon.</p>
-                )}
                 {status === 'error' && (
                   <p className="text-alert text-xs text-center">
                     Something went wrong sending that — email me directly at {SITE.email} instead.
