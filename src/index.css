@@ -221,3 +221,61 @@ body {
   border-color: var(--color-cyan);
   color: var(--color-cyan);
 }
+
+/* ===== Upgrade layer: gradient name, aurora hero, pill, richer hover ===== */
+.text-gradient {
+  background: linear-gradient(100deg, var(--color-ink) 5%, var(--color-signal) 50%, var(--color-violet) 95%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: gradient-shift 8s ease-in-out infinite alternate;
+}
+@keyframes gradient-shift { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+
+.aurora {
+  position: absolute;
+  inset: -15% -10% auto -10%;
+  height: 85%;
+  pointer-events: none;
+  background:
+    radial-gradient(40% 50% at 20% 30%, color-mix(in srgb, var(--color-signal) 24%, transparent), transparent 70%),
+    radial-gradient(35% 45% at 80% 20%, color-mix(in srgb, var(--color-violet) 22%, transparent), transparent 70%),
+    radial-gradient(30% 40% at 60% 75%, color-mix(in srgb, var(--color-cyan) 15%, transparent), transparent 70%);
+  filter: blur(36px);
+  animation: aurora-drift 16s ease-in-out infinite alternate;
+}
+@keyframes aurora-drift {
+  from { transform: translate3d(-2%, 0, 0) scale(1); }
+  to { transform: translate3d(3%, 4%, 0) scale(1.08); }
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-cyan);
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-cyan) 35%, transparent);
+  background: color-mix(in srgb, var(--color-cyan) 8%, transparent);
+}
+.pill-dot {
+  width: 0.45rem; height: 0.45rem; border-radius: 999px;
+  background: var(--color-cyan);
+  box-shadow: 0 0 10px var(--color-cyan);
+  animation: pulse-slow 2s ease-in-out infinite;
+}
+
+.panel-glass {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.panel-glass:hover {
+  border-color: color-mix(in srgb, var(--color-signal) 45%, var(--color-hairline));
+  box-shadow: var(--shadow-glow-md);
+}

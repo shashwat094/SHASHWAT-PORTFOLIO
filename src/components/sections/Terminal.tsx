@@ -158,16 +158,16 @@ export default function Terminal() {
           `Email: ${SITE.email}`,
           `Phone: ${SITE.phone}`,
           `GitHub: ${SITE.github}`,
-          `LinkedIn: ${SITE.linkedin}`
+          `Instagram: ${SITE.instagramHandle}`
         )
         break
       case 'github':
         print('Opening GitHub profile...')
         window.open(SITE.github, '_blank')
         break
-      case 'linkedin':
-        print('Opening LinkedIn profile...')
-        window.open(SITE.linkedin, '_blank')
+      case 'instagram':
+        print('Opening Instagram profile...')
+        window.open(SITE.instagram, '_blank')
         break
       case 'resume':
         print('Downloading resume.pdf...')

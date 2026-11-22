@@ -21,7 +21,7 @@ const SECTION_INTROS: Record<string, string> = {
   skills: "You're looking at Skills — grouped by how he actually uses them, not just a logo wall.",
   projects: "You're on Projects — real, shipped systems, including Nova, the assistant this chat is a small preview of.",
   experience: "This is Experience — his work history, most recently as a Data Entry Operator and as founder of ChitrakootDhamTour.",
-  education: "You're on Education — his BCA at SICS, affiliated with Makhanlal Chaturvedi National University.",
+  education: "You're on Education — his BCA (2023–2026) at SICS, affiliated with Makhanlal Chaturvedi National University, and he's now pursuing an MCA (2026–2028) at JRD State University, Chitrakoot.",
   services: "This is what he offers if you're hiring or contracting — full-stack web, mobile, dashboards, and business sites.",
   testimonials: "These are a few words from people he's actually worked with.",
   achievements: "A few numbers that summarize the work so far.",

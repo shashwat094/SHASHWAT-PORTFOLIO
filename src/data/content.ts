@@ -14,37 +14,39 @@ const BASE = import.meta.env.BASE_URL
 export const SITE = {
   name: 'Shashwat Pandey',
   shortName: 'Shashwat',
-  fullTitle: 'Full-Stack Developer',
-  location: 'Satna, Madhya Pradesh, India',
+  fullTitle: 'Developer',
+  location: 'Chitrakoot, Satna, Madhya Pradesh, India',
   email: 'shashwat565b@gmail.com',
   phone: '+91 70244 87353',
   github: 'https://github.com/shashwat094',
   githubUsername: 'shashwat094', // used for the live GitHub stats section
-  linkedin: 'https://linkedin.com/in/shashwat094',
-  twitter: 'https://x.com/shashwat_s92',
+  instagram: 'https://instagram.com/shashwat_92s',
+  instagramHandle: '@shashwat_92s',
+  portfolioUrl: 'https://shashwat-portfolio-flax.vercel.app',
   resumeUrl: `${BASE}resume.pdf`, // drop your resume.pdf into /public
   photoUrl: `${BASE}pic.jpeg`, // drop your pic.jpeg into /public
   novaUrl: 'https://nova-ai-xi-khaki.vercel.app',
-  repoUrl: 'https://github.com/shashwat094/SHASHWAT-DEV',
+  repoUrl: 'https://github.com/shashwat094/SHASHWAT-PORTFOLIO',
   // ⚠ CONFIG — Web3Forms (https://web3forms.com) — free, no account/dashboard,
   // just enter your email there and they send you an access key instantly.
   web3formsKey: 'ff5d4976-0b8a-461b-a9f1-0045ecd9e4ce',
 }
 
 export const ROLES = [
-  'Full-Stack Developer',
+  'Developer',
+  'React · Node.js · AI Integration',
   'AI Product Builder',
   'React Native Engineer',
   'Founder @ ChitrakootDhamTour',
-  'BCA Graduate · 2026',
+  'BCA Graduate · MCA Scholar',
   'Problem Solver',
 ]
 
 export const ABOUT = {
   paragraphs: [
-    "I'm a full-stack developer and recent BCA graduate who ships finished, production-grade products end to end — from database schema to deployed UI. I've independently designed, built, and deployed six full applications: a live customer-facing booking platform, two AI-integrated web apps with real-time voice and computer-vision features, a React Native gym-management app, a multi-portal college system, and the site you're looking at right now.",
+    "I'm a developer (BCA 2026, now pursuing MCA at JRD State University) who solves real product problems end to end: keeping user privacy intact in a voice and vision AI assistant, keeping API keys off the client in an LLM chat app, and enforcing role-based access in a multi-portal college system. I ship finished, production-grade products — from database schema to deployed UI. I've independently designed, built, and deployed six full applications: a live customer-facing booking platform, two AI-integrated web apps with real-time voice and computer-vision features, a React Native gym-management app, a multi-portal college system, and the site you're looking at right now.",
     "I'm co-founder and lead developer of ChitrakootDhamTour, a live booking platform serving real pilgrimage visitors in Chitrakoot, MP — built and run with Dharmendra Sen, from the database schema to a custom saffron-and-teal design system, including iteratively resolving cross-browser rendering issues to keep it stable for real users.",
-    "My stack spans React, React Native, PHP/MySQL, Firebase and Node.js, plus Java and Python — and lately, real AI integration: the Groq LLM API, the Web Speech API for voice interfaces, and MediaPipe for on-device computer vision. I'm comfortable owning a project from architecture through deployment, and I'm looking for a software or web development role — internship or full-time — where that ownership translates into shipped features from day one.",
+    "My stack spans React, React Native, PHP/MySQL, Firebase and Node.js, plus Java and Python — and lately, real AI integration: the Groq LLM API, the Web Speech API for voice interfaces, and MediaPipe for on-device computer vision. I'm comfortable owning a project from architecture through deployment, and I'm looking for a software or web development role — internship or full-time, alongside my MCA — where that ownership translates into shipped features from day one.",
   ],
   stats: [
     { label: 'Production Apps Shipped', value: 6, suffix: '' },
@@ -93,6 +95,7 @@ export const PROJECTS: Project[] = [
     year: '2026 — Present',
     role: 'Solo Developer',
     liveUrl: 'https://nova-ai-xi-khaki.vercel.app',
+    repoUrl: 'https://github.com/shashwat094/NOVA-AI',
     featured: true,
     highlights: [
       'Firebase Authentication — Google sign-in plus email/password — with Firestore-backed persistent chat history',
@@ -111,6 +114,7 @@ export const PROJECTS: Project[] = [
     year: '2024 — Present',
     role: 'Co-Founder & Lead Developer',
     liveUrl: 'https://chitrakootdhamtour.in',
+    repoUrl: 'https://github.com/shashwat094/chitrakootdhamtour',
     featured: true,
     highlights: [
       'Firebase-powered dynamic review system and package/booking cards, fully mobile-responsive',
@@ -128,11 +132,14 @@ export const PROJECTS: Project[] = [
     category: 'Web',
     year: '2026',
     role: 'Solo Developer',
+    liveUrl: 'https://cipher-os-rho.vercel.app',
+    repoUrl: 'https://github.com/shashwat094/CIPHER-OS',
     featured: true,
     highlights: [
       'Real-time bilingual (English/Hindi) voice interaction via the Web Speech API, with live interrupt-on-speech handling',
       'On-device computer vision with MediaPipe for facial-expression and hand-gesture recognition — zero video ever leaves the browser',
       'In-browser document pipeline (PDF.js, Mammoth.js) for querying PDF/Word files with no server roundtrip, plus a themeable system with 8 switchable palettes',
+      'Permission-based tool system limited to actions a browser can genuinely perform — no fake or unsafe assistant behavior, plus real screen capture',
     ],
   },
   {
@@ -145,7 +152,8 @@ export const PROJECTS: Project[] = [
     category: 'Web',
     year: '2026',
     role: 'Solo Developer',
-    repoUrl: 'https://github.com/shashwat094/SHASHWAT-DEV',
+    liveUrl: 'https://shashwat-portfolio-flax.vercel.app',
+    repoUrl: 'https://github.com/shashwat094/SHASHWAT-PORTFOLIO',
     highlights: [
       '3D scene rendering (Three.js) and scroll-driven animation (GSAP, Lenis smooth-scroll)',
       'A genuinely working terminal with 20+ commands, full-screen mode, and tap-to-run chips for mobile',
@@ -160,7 +168,7 @@ export const PROJECTS: Project[] = [
       'A complete cross-platform gym management app with 6 screens: members, plans, payments and settings. Auto member ID generation, payment tracking across Cash/UPI/Other, and PDF export/import for digital ID cards.',
     stack: ['React Native', 'Expo', 'WebView', 'Leaflet.js', 'PDF Export'],
     category: 'Mobile',
-    year: '2025',
+    year: '2026',
     role: 'Solo Developer',
     featured: true,
     highlights: [
@@ -174,10 +182,10 @@ export const PROJECTS: Project[] = [
     title: 'Smart College Management System',
     tagline: 'Multi-portal system: Admin, Faculty & Student',
     description:
-      'A 3-role college management system handling attendance, notices, grades and academic records, on a 10-table relational schema — co-developed in a 2-person team under faculty guidance, with 100+ pages of formal documentation to university formatting standards.',
+      'A 3-role college management system handling attendance, notices, grades and academic records, on a 10-table relational schema — co-developed in a 2-person team under faculty guidance (Jul–Aug 2026), with role-based access across all three portals and 100+ pages of formal documentation to university formatting standards.',
     stack: ['PHP 8', 'MySQL 8', 'Bootstrap 5', 'Chart.js'],
     category: 'Systems',
-    year: '2025',
+    year: '2026',
     role: 'Developer',
     highlights: [
       'Admin dashboard with Chart.js dual-axis visualizations and animated stat cards',
@@ -204,6 +212,9 @@ export const SKILLS: Record<string, { name: string; level: number }[]> = {
     { name: 'Bootstrap 5', level: 85 },
     { name: 'Framer Motion', level: 78 },
     { name: 'Chart.js', level: 78 },
+    { name: 'Zustand', level: 80 },
+    { name: 'Three.js', level: 70 },
+    { name: 'GSAP', level: 72 },
   ],
   'Backend & APIs': [
     { name: 'Node.js', level: 78 },
@@ -228,6 +239,7 @@ export const SKILLS: Record<string, { name: string; level: number }[]> = {
     { name: 'Firebase Auth', level: 80 },
     { name: 'Postman', level: 75 },
     { name: 'Playwright', level: 70 },
+    { name: 'Figma', level: 65 },
   ],
 }
 
@@ -250,11 +262,18 @@ export const EXPERIENCE = [
 
 export const EDUCATION = [
   {
+    degree: 'Master of Computer Applications (MCA)',
+    institution: 'JRD State University, Chitrakoot',
+    affiliation: 'Currently pursuing',
+    period: '2026 — 2028',
+    detail: 'In progress',
+  },
+  {
     degree: 'Bachelor of Computer Applications (BCA)',
     institution: 'Sadguru Institute of Computer Studies (SICS), Chitrakoot',
     affiliation: 'Makhanlal Chaturvedi National University (MCU), Bhopal',
     period: '2023 — 2026',
-    detail: 'CGPA 6.5',
+    detail: 'Graduated 2026',
   },
 ]
 
@@ -317,7 +336,7 @@ export const TERMINAL_HELP = [
   { cmd: 'education', desc: 'Academic background' },
   { cmd: 'contact', desc: 'How to reach me' },
   { cmd: 'github', desc: 'Open GitHub profile' },
-  { cmd: 'linkedin', desc: 'Open LinkedIn profile' },
+  { cmd: 'instagram', desc: 'Open Instagram profile' },
   { cmd: 'resume', desc: 'Download resume' },
   { cmd: 'whoami', desc: 'Current session identity' },
   { cmd: 'sudo', desc: 'Try it' },

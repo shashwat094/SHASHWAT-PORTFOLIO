@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  FiMail, FiPhone, FiMapPin, FiSend, FiGithub, FiLinkedin,
+  FiMail, FiPhone, FiMapPin, FiSend, FiGithub, FiInstagram,
   FiCopy, FiCheck, FiExternalLink, FiCheckCircle, FiAlertCircle, FiX,
 } from 'react-icons/fi'
 import { SITE } from '@/data/content'
@@ -160,8 +160,8 @@ export default function Contact() {
               <a href={SITE.github} target="_blank" rel="noreferrer" className="text-ink-dim hover:text-signal transition-colors text-xl" data-cursor="link">
                 <FiGithub />
               </a>
-              <a href={SITE.linkedin} target="_blank" rel="noreferrer" className="text-ink-dim hover:text-signal transition-colors text-xl" data-cursor="link">
-                <FiLinkedin />
+              <a href={SITE.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="text-ink-dim hover:text-signal transition-colors text-xl" data-cursor="link">
+                <FiInstagram />
               </a>
             </div>
           </motion.div>

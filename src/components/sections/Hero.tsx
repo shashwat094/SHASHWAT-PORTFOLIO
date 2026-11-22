@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { FiGithub, FiLinkedin, FiMail, FiDownload, FiArrowDown } from 'react-icons/fi'
+import { FiGithub, FiInstagram, FiMail, FiDownload, FiArrowDown } from 'react-icons/fi'
 import { SITE, ROLES } from '@/data/content'
 import { useTypewriter } from '@/hooks/useTypewriter'
 import { scrollToId } from '@/lib/utils'
@@ -14,6 +14,7 @@ export default function Hero() {
       id="hero"
       className="relative min-h-[100svh] flex items-center pt-24 sm:pt-28 pb-24 px-4 xs:px-5 sm:px-8 overflow-hidden"
     >
+      <div className="aurora" aria-hidden />
       <div className="mx-auto max-w-7xl w-full grid md:grid-cols-[1.3fr_0.7fr] gap-10 md:gap-12 items-center">
         <div className="min-w-0">
           {/* Photo shows small + centered on mobile, hidden here (shown large in the side column) from md up */}
@@ -25,6 +26,14 @@ export default function Hero() {
           >
             <ProfilePhoto className="w-full" />
           </motion.div>
+
+          <motion.span
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="pill mb-4 mx-auto md:mx-0"
+          >
+            <span className="pill-dot" /> Open to internships &amp; full-time roles
+          </motion.span>
 
           <motion.p
             initial={{ opacity: 0, y: 12 }}
@@ -39,7 +48,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.7 }}
-            className="font-display font-bold leading-[0.95] tracking-tight text-ink text-center md:text-left"
+            className="font-display font-bold leading-[0.95] tracking-tight text-gradient text-center md:text-left"
             style={{ fontSize: 'clamp(2.75rem, 11vw, 6.2rem)' }}
           >
             {SITE.shortName.toUpperCase()}
@@ -63,8 +72,8 @@ export default function Hero() {
             className="mt-6 max-w-xl mx-auto md:mx-0 text-ink-dim text-sm sm:text-base leading-relaxed text-center md:text-left"
           >
             Building complete, production systems — from database schema to shipped product.
-            Co-founder of a live spiritual tourism platform, and a full-stack / React Native developer
-            who ships real things instead of demos.
+            Co-founder of a live spiritual tourism platform, a React / React Native developer
+            who ships real things instead of demos, and an MCA student at JRD State University.
           </motion.p>
 
           <motion.div
@@ -84,7 +93,7 @@ export default function Hero() {
             <div className="flex items-center gap-5 xs:gap-4 mt-2 xs:mt-0 xs:ml-1">
               {[
                 { icon: <FiGithub />, href: SITE.github, label: 'GitHub' },
-                { icon: <FiLinkedin />, href: SITE.linkedin, label: 'LinkedIn' },
+                { icon: <FiInstagram />, href: SITE.instagram, label: 'Instagram' },
                 { icon: <FiMail />, href: `mailto:${SITE.email}`, label: 'Email' },
               ].map((s) => (
                 <a

@@ -26,7 +26,7 @@ export default function CommandPalette({ open, onClose }: CommandPaletteProps) {
       { label: 'Open Terminal', hint: 'section', action: () => scrollTo('#terminal') },
       { label: 'Go to Contact', hint: 'section', action: () => scrollTo('#contact') },
       { label: 'Open GitHub', hint: 'external', action: () => window.open(SITE.github, '_blank') },
-      { label: 'Open LinkedIn', hint: 'external', action: () => window.open(SITE.linkedin, '_blank') },
+      { label: 'Open Instagram', hint: 'external', action: () => window.open(SITE.instagram, '_blank') },
       { label: 'Download Résumé', hint: 'file', action: () => window.open(SITE.resumeUrl, '_blank') },
       { label: 'Email Me', hint: 'mailto', action: () => (window.location.href = `mailto:${SITE.email}`) },
     ],
